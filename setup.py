@@ -53,12 +53,6 @@ if sys.hexversion < 0x02060000:
 
 class BuildEggInfo(egg_info):
     def run(self):
-        if ('sdist' in sys.argv or
-            'bdist_egg' in sys.argv or
-            'install' in sys.argv):
-            self.run_command('build_media')
-            self.run_command('build_i18n')
-
         egg_info.run(self)
 
 
@@ -137,13 +131,6 @@ setup(name=PACKAGE_NAME,
       description="A collection of useful classes and functions for Django",
       packages=find_packages(exclude=["tests"]),
       cmdclass=cmdclasses,
-      install_requires=[
-          django_version,
-          'django-pipeline>=1.3.23',
-          'feedparser>=5.1.2',
-          'pillowfight',
-          'pytz',
-      ],
       dependency_links = [
           "http://downloads.reviewboard.org/mirror/",
           download_url,
